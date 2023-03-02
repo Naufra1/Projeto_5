@@ -1,0 +1,7 @@
+import "./Cadastro.css";
+
+function Cadastro() {
+  return <p>Cadastro</p>;
+}
+
+export default Cadastro;
