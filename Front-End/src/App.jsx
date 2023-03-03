@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
+import Footer from "./components/Layout/Footer";
+import Menu from "./components/Layout/Navbar";
 import About from "./components/Page/About";
 import Cadastro from "./components/Page/Cadastro";
 import Contato from "./components/Page/Contato";
@@ -9,10 +11,10 @@ import Funcionalidade from "./components/Page/Funcionalidade";
 import Home from "./components/Page/Home";
 import Login from "./components/Page/Login";
 
-
 function App() {
   return (
     <Router>
+      <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<About />} />
@@ -21,6 +23,7 @@ function App() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
