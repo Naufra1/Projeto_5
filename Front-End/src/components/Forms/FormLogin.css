@@ -1,0 +1,45 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin: 10% auto;
+  margin-inline: auto;
+  padding: 1em;
+  text-align: center;
+}
+
+.form-title h2 {
+  color: var(--color-sec);
+  font-size: 2.5em;
+  text-transform: uppercase;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  color: var(--color-sec);
+}
+
+.form button {
+  width: 100%;
+}
+
+.form p{
+  position: relative;
+  bottom: 5%;
+  text-align: end;
+  text-decoration: underline;
+
+  cursor: pointer;
+  color: gray;
+  opacity: 0.5;
+}
+
+.textArea {
+  outline: none;
+}
+
+.textArea:focus {
+  border: 1px solid var(--sec-bg);
+}

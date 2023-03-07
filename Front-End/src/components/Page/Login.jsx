@@ -1,7 +1,12 @@
+import FormLogin from "../Forms/FormLogin";
 import "./Login.css";
 
 function Login() {
-  return <p>Login</p>;
+  return (
+    <div>
+      <FormLogin />
+    </div>
+  );
 }
 
 export default Login;

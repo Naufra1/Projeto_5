@@ -1,4 +1,7 @@
-.navbar-login {
-  display: flex ;
-  gap: 20px;
+.navbar {
+  box-shadow: 0 0 .3em var(--color);
+}
+
+.link {
+  color: black;
 }

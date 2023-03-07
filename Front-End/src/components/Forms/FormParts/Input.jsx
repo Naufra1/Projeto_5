@@ -1,17 +1,17 @@
 import "./Input.css";
 
-function Input({ name, type, text, id, value, placeholder, handleOnChange }) {
+function Input({ name, type, text, placeholder, pattern, required, handleOnChange }) {
   return (
-    <div>
+    <div className="box-input">
       <label htmlFor={name}>{text}</label>
       <input
         type={type}
         name={name}
         id={name}
-        key={id}
-        value={value}
+        pattern={pattern}
         placeholder={placeholder}
         onChange={handleOnChange}
+        required
       />
     </div>
   );

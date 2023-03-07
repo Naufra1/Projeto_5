@@ -1,7 +1,13 @@
 import "./Cadastro.css";
 
+import FormCadastro from "../Forms/FormCadastro";
+
 function Cadastro() {
-  return <p>Cadastro</p>;
+  return (
+    <div>
+      <FormCadastro />
+    </div>
+  );
 }
 
 export default Cadastro;

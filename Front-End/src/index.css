@@ -4,7 +4,16 @@
   box-sizing: border-box;
 }
 
-body {
+:root {
   --main-bg: white;
   --sec-bg: blue;
+  --color: #0fc3e8;
+  --color-sec: #0194be;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+	background-color: var(--main-bg);
 }

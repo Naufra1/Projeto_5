@@ -1,0 +1,14 @@
+.button {
+  border: none;
+  height: 2.5rem;
+
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button-form {
+  background-color: var(--sec-bg);
+  color: var(--main-bg);
+}

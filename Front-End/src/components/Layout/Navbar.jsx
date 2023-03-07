@@ -7,7 +7,7 @@ import "./Navbar.css";
 
 function Menu() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="white">
+    <Navbar collapseOnSelect expand="lg">
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>Projeto</Navbar.Brand>
@@ -15,6 +15,9 @@ function Menu() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
+            <LinkContainer to="/">
+              <Nav.Link>Inicio</Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/sobre">
               <Nav.Link>Sobre</Nav.Link>
             </LinkContainer>
@@ -25,14 +28,14 @@ function Menu() {
               <Nav.Link>Contato</Nav.Link>
             </LinkContainer>
           </Nav>
-          <div className="navbar-login">
+          <Nav className="navbar-login">
             <LinkContainer to="/cadastro">
-              <Nav.Link>Cadastro</Nav.Link>
+              <Nav.Link className="link">Cadastro</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
+              <Nav.Link className="link">Login</Nav.Link>
             </LinkContainer>
-          </div>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
