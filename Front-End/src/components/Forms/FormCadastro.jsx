@@ -2,10 +2,12 @@ import "./FormCadastro.css";
 
 import Input from "./FormParts/Input";
 import Button from "./FormParts/Button";
+import Title from "../Parts/Title";
 
 function FormCadastro() {
   return (
-    <div className="cadastro">
+    <section className="cadastro">
+      <Title titulo='Cadastro' />
       <form className="form">
         <div className="formulario nome-cpf">
           <Input
@@ -61,7 +63,7 @@ function FormCadastro() {
           <Button classButton="plaholder" type="submit" text="Entrar" />
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 

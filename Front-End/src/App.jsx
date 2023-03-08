@@ -7,6 +7,7 @@ import Menu from "./components/Layout/Navbar";
 import About from "./components/Page/About";
 import Cadastro from "./components/Page/Cadastro";
 import Contato from "./components/Page/Contato";
+import Duvidas from "./components/Page/Duvidas";
 import Funcionalidade from "./components/Page/Funcionalidade";
 import Home from "./components/Page/Home";
 import Login from "./components/Page/Login";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/sobre" element={<About />} />
           <Route path="/funcionalidades" element={<Funcionalidade />} />
           <Route path="/contato" element={<Contato />} />
+          <Route path="/duvidas" element={<Duvidas />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/login" element={<Login />} />
         </Routes>

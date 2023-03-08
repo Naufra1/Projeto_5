@@ -2,13 +2,12 @@ import "./FormLogin.css";
 
 import Input from "./FormParts/Input";
 import Button from "./FormParts/Button";
+import Title from "../Parts/Title";
 
 function FormLogin() {
   return (
-    <div className="form">
-      <div className="form-title">
-        <h2>Login</h2>
-      </div>
+    <section className="form">
+      <Title titulo='Login' />
       <form>
         <div>
           <Input
@@ -28,7 +27,7 @@ function FormLogin() {
         <Button classButton="button-form" type="submit" text="Entrar" />
         <p>esqueceu a senha?</p>
       </form>
-    </div>
+    </section>
   );
 }
 

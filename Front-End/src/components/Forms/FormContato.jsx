@@ -1,13 +1,28 @@
+import { useState } from "react";
 import Button from "./FormParts/Button";
 import Input from "./FormParts/Input";
+import Message from "../Layout/Message";
+import Title from "../Parts/Title";
 
 function FormContato() {
+  const [mensagem, setMensagem] = useState()
+  const [type, setType] = useState()
+
+  function Enviar(e) {
+    setMensagem('')
+    e.preventDefault()
+    
+    if(mensagem == '') {
+      setMensagem('Mensagem enviada com sucesso.')
+      setType('success')
+    }
+  }
+
   return (
-    <div className="form">
-      <div className="form-title">
-        <h2>Entre em Contato</h2>
-      </div>
-      <form>
+    <section className="main form">
+      <Title titulo='Entre em Contato' />
+      {mensagem && <Message type={type} msg={mensagem} />}
+      <form onSubmit={Enviar}>
         <div className="form-div">
           <Input
             type="email"
@@ -26,7 +41,7 @@ function FormContato() {
         <textarea className="textArea" name="texto" rows="5"></textarea>
         <Button classButton="button-form" type='submit' text="Enviar" />
       </form>
-    </div>
+    </section>
   );
 }
 

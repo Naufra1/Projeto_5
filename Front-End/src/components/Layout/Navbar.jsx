@@ -21,6 +21,9 @@ function Menu() {
             <LinkContainer to="/sobre">
               <Nav.Link>Sobre</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/duvidas">
+              <Nav.Link>Perguntas Frequentes</Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/funcionalidades">
               <Nav.Link>Funcionalidades</Nav.Link>
             </LinkContainer>
