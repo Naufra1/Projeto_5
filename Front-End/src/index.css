@@ -17,3 +17,8 @@ body,
 	height: 100%;
 	background-color: var(--main-bg);
 }
+
+section {
+  margin: 10% auto;
+  margin-inline: auto;
+}
