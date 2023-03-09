@@ -1,34 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Router, Routes, Route, Outlet } from "react-router-dom";
 import "./App.css";
 
 import Container from "./components/Layout/Container";
 import Footer from "./components/Layout/Footer";
 import Menu from "./components/Layout/Navbar";
-import About from "./components/Page/About";
-import Cadastro from "./components/Page/Cadastro";
-import Contato from "./components/Page/Contato";
-import Duvidas from "./components/Page/Duvidas";
-import Funcionalidade from "./components/Page/Funcionalidade";
-import Home from "./components/Page/Home";
-import Login from "./components/Page/Login";
+
 
 function App() {
   return (
-    <Router>
+    <>
       <Menu />
       <Container>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sobre" element={<About />} />
-          <Route path="/funcionalidades" element={<Funcionalidade />} />
-          <Route path="/contato" element={<Contato />} />
-          <Route path="/duvidas" element={<Duvidas />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <Outlet />
       </Container>
       <Footer />
-    </Router>
+    </>
   );
 }
 
