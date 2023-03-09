@@ -1,22 +1,27 @@
-import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+
 import "./Footer.css";
 
 function Footer() {
   return (
     <footer className="footer">
-      <ul className="footer__list">
-        <li className="footer__item">
-          <FaFacebook />
-        </li>
-        <li className="footer__item">
-          <FaInstagram />
-        </li>
-        <li className="footer__item">
-          <FaLinkedin />
-        </li>
-      </ul>
-      <p className="footer__txt">
-        <span>Projeto5</span> &copy; 2023
+      <div className="footer-box">
+        <div className="footer-midia">
+          <div className="midia-titulo">
+            <h5>Mídias Sociáis</h5>
+          </div>
+          <ul className="midia-lista">
+            <li className="midia-item">
+              <FaFacebook />
+            </li>
+            <li className="midia-item">
+              <FaInstagram />
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p className="footer-txt">
+        <span>Vacinei-Rj</span> &copy; 2023
       </p>
     </footer>
   );

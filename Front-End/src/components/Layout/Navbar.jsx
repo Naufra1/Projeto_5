@@ -10,7 +10,7 @@ function Menu() {
     <Navbar collapseOnSelect expand="lg">
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand>Projeto</Navbar.Brand>
+          <Navbar.Brand>Vacinei-RJ</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -31,14 +31,14 @@ function Menu() {
               <Nav.Link>Contato</Nav.Link>
             </LinkContainer>
           </Nav>
-          <Nav className="navbar-login">
+          <div className="navbar-login">
             <LinkContainer to="/cadastro">
               <Nav.Link className="link">Cadastro</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/login">
               <Nav.Link className="link">Login</Nav.Link>
             </LinkContainer>
-          </Nav>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>

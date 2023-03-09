@@ -1,5 +1,10 @@
 .navbar {
-  box-shadow: 0 0 .3em var(--color);
+  box-shadow: 0 0 .3em var(--sec-bg);
+}
+
+.navbar-login {
+  display: flex;
+  gap: 20px;
 }
 
 .link {
