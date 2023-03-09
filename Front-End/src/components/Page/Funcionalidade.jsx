@@ -1,4 +1,4 @@
-import "./Funcionalidade.css";
+import "./Estilos/Funcionalidade.css";
 
 function Funcionalidade() {
   return <p>Funcionalidade</p>;

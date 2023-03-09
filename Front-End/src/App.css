@@ -1,0 +1,29 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  text-align: center;
+  width: 50%;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  color: var(--color-sec);
+}
+
+.form button {
+  width: 100%;
+}
+
+.form p{
+  position: relative;
+  bottom: 5%;
+  text-align: end;
+  text-decoration: underline;
+
+  cursor: pointer;
+  color: gray;
+  opacity: 0.5;
+}

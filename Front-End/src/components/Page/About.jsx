@@ -1,5 +1,5 @@
 import Title from "../Parts/Title";
-import "./About.css";
+import "./Estilos/About.css";
 
 function About() {
   return (
