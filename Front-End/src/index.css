@@ -6,9 +6,10 @@
 
 :root {
   --main-bg: white;
-  --sec-bg: blue;
+  --sec-bg: #d0ecea;
   --color: #0fc3e8;
   --color-sec: #0194be;
+  --color-terc: blue;
 }
 
 html,
