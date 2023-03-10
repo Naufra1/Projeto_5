@@ -11,7 +11,7 @@
 	grid-template-columns: repeat(2, 1fr);
 }
 
-.footer-midia {
+.footer-secao {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -35,6 +35,15 @@
 .midia-lista svg {
 	font-size: 1.5em;
 	cursor: pointer;
+}
+
+.duvidas-lista {
+	text-align: start;
+}
+
+.duvidas-item a {
+	text-decoration: none;
+	color: var(--color);
 }
 
 .footer-txt {

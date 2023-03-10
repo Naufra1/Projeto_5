@@ -1,4 +1,5 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { NavLink } from 'react-router-dom'
 
 import "./Footer.css";
 
@@ -6,8 +7,8 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-box">
-        <div className="footer-midia">
-          <div className="midia-titulo">
+        <div className="footer-secao">
+          <div className="footer-titulo">
             <h5>Mídias Sociáis</h5>
           </div>
           <ul className="midia-lista">
@@ -18,6 +19,19 @@ function Footer() {
               <FaInstagram />
             </li>
           </ul>
+        </div>
+        <div className="footer-secao">
+          <div className="footer-titulo">
+            <h5>Duvidas e Contato</h5>
+          </div>
+          <nav className="duvidas-lista">
+            <div className="duvidas-item">
+            <NavLink to='/duvidas'>Perguntas Frequentes</NavLink>
+            </div>
+            <div className="duvidas-item">
+            <NavLink to='/contato'>Nos contate</NavLink>
+            </div>
+          </nav>
         </div>
       </div>
       <p className="footer-txt">
