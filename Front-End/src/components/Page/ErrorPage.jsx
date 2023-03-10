@@ -1,9 +1,14 @@
+import { NavLink } from 'react-router-dom'
+import Title from '../Parts/Title'
+
 function ErrorPage() {
   return (
-    <div>
-      <h2>Erro</h2>
-      <p>Algo aconteceu.</p>
-    </div>
+    <section className="Error-Page">
+      <Title titulo='Error' />
+      <div>
+        <h5>Algo aconteceu com a página,<NavLink to='/'>Clique aqui para voltar para a página inicial.</NavLink></h5>
+      </div>
+    </section>
   )
 }
 
