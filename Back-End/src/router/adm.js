@@ -1,8 +1,38 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { validateAdm } from "../controller/admController.js";
+import {
+  changeTxt,
+  registerAdmin,
+  showUsers,
+  validateAdm,
+} from "../controller/admController.js";
+import { validate } from "../authenticantion/auth.js";
 
 export function admRoute(app) {
+  //Cadastro do Administrador
+  app.post("/adm/register", async (req, res) => {
+    let adm = req.body;
+    let salt = await bcrypt.genSalt(10);
+    let hashPassword = await bcrypt.hash(adm.password, salt);
+    adm = {
+      ...adm,
+      password: hashPassword,
+    };
+
+    let admExists = await validateAdm(adm.email);
+    if (admExists) {
+      return res.status(400).send({ erro: "Usuário já existe" });
+    }
+
+    try {
+      await registerAdmin(adm);
+      res.status(201).send({ msg: "Usuário criado com sucesso" });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({ error: "Aconteceu um erro no servidor" });
+    }
+  });
+  //Login do Administrador
   app.post("/adm/login", async (req, res) => {
     const adm = req.body;
     if (!adm.email) {
@@ -36,6 +66,26 @@ export function admRoute(app) {
     } catch (err) {
       console.log(err);
       res.status(500).send({ error: "Aconteceu um erro no servidor" });
+    }
+  });
+
+  app.patch("/adm/about", validate, async (req, res) => {
+    const about = req.body;
+
+    if (!about.text) {
+      res.status(400).send({ error: "Digite algum texto" });
+    }
+    await changeTxt(about);
+    res.status(200).send({ msg: "Texto trocado com sucesso" });
+  });
+
+  app.get("/adm/list", async (req, res) => {
+    try {
+      let lista = await showUsers();
+      res.status(200).send({ msg: "Usuários listados com sucesso", lista });
+    } catch (erro) {
+      console.log(erro);
+      res.status(404).send({ err: "Usuários não encontrados" });
     }
   });
 }
