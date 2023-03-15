@@ -1,14 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import cors from 'cors'
 
-import { userRoute } from './router/user.js'
+import { userRoute } from "./router/user.js";
 import { admRoute } from "./router/adm.js";
+
 dotenv.config();
 
 const app = express();
 
+app.use(cors())
 app.use(express.json());
 
 app.use(function (req, res, next) {
@@ -19,8 +20,7 @@ app.use(function (req, res, next) {
 });
 
 //Rotas
-userRoute(app)
+userRoute(app);
 admRoute(app)
-
 
 export default app;

@@ -9,7 +9,7 @@ import { validate } from "../authenticantion/auth.js";
 
 export function userRoute(app) {
   //Cadastro
-  app.post("/register", async (req, res) => {
+  app.post("/user/register", async (req, res) => {
     let user = req.body;
 
     if (!user.name) {
@@ -22,6 +22,30 @@ export function userRoute(app) {
 
     if (!user.password) {
       return res.status(400).send({ error: "A senha é obrigatório" });
+    }
+
+    if (!user.sintomas) {
+      return res.status(400).send({ error: "A senha é obrigatório" });
+    }
+
+    if (!user.profissional) {
+      return res.status(400).send({ error: "Escolha a opção de profissão" });
+    }
+
+    if (!user.risco) {
+      return res
+        .status(400)
+        .send({ error: "Escolha se é você está em situação de risco" });
+    }
+
+    if (!user.idade) {
+      return res.status(400).send({ error: "A idade é obrigatório" });
+    }
+
+    if (!user.municipio) {
+      return res
+        .status(400)
+        .send({ error: "O município é obrigatório é obrigatório" });
     }
 
     if (!user.confirmpassword) {
@@ -55,7 +79,7 @@ export function userRoute(app) {
     }
   });
   //Login
-  app.post("/login", async (req, res) => {
+  app.post("/user/login", async (req, res) => {
     const user = req.body;
     if (!user.email) {
       return res.status(400).send({ error: "O email é obrigatório" });
