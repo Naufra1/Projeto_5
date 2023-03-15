@@ -5,7 +5,7 @@ import {
 } from "../controller/userController.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { validate } from "../../authenticantion/auth.js";
+import { validate } from "../authenticantion/auth.js";
 
 export function userRoute(app) {
   //Cadastro
