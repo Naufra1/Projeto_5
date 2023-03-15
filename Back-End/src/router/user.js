@@ -88,7 +88,7 @@ export function userRoute(app) {
       res.status(500).send({ error: "Aconteceu um erro no servidor" });
     }
   });
-
+  //pegando as informações do usuario
   app.get("/user/:id", validate, async (req, res) => {
     const id = req.params.id;
     let user = await infoUser(id);
