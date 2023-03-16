@@ -5,9 +5,9 @@ import {
   registerAdmin,
   showUsers,
   validateAdm,
-  getTxt
+  getTxt,
 } from "../controller/admController.js";
-import { validate } from "../authenticantion/auth.js";
+import { validate } from "../authentication/auth.js";
 
 export function admRoute(app) {
   //Cadastro do Administrador
@@ -22,76 +22,77 @@ export function admRoute(app) {
 
     let admExists = await validateAdm(adm.email);
     if (admExists) {
-      return res.status(400).send({ erro: "Usuário já existe" });
+      return res.status(400).json({ erro: "Usuário já existe" });
     }
 
     try {
       await registerAdmin(adm);
-      res.status(201).send({ msg: "Usuário criado com sucesso" });
+      return res.status(201).json({ msg: "Usuário criado com sucesso" });
     } catch (err) {
       console.log(err);
-      res.status(500).send({ error: "Aconteceu um erro no servidor" });
+      return res.status(500).json({ error: "Aconteceu um erro no servidor" });
     }
   });
   //Login do Administrador
   app.post("/adm/login", async (req, res) => {
-    const adm = req.body;
+    let adm = req.body;
     if (!adm.email) {
-      return res.status(400).send({ error: "O email é obrigatório" });
+      return res.status(400).json({ error: "O email é obrigatório" });
     }
 
     if (!adm.password) {
-      return res.status(400).send({ error: "A senha é obrigatório" });
+      return res.status(400).json({ error: "A senha é obrigatório" });
     }
 
     let admExists = await validateAdm(adm.email);
     if (!admExists) {
-      return res.status(400).send({ error: "Email ou senha inválido" });
+      return res.status(400).json({ error: "Email ou senha inválido" });
     }
 
-    const checkPassword = await bcrypt.compare(
-      adm.password,
-      admExists.password
-    );
+    let checkPassword = await bcrypt.compare(adm.password, admExists.password);
     if (!checkPassword) {
-      return res.status(400).send({ error: "Email ou senha inválido" });
+      return res.status(400).json({ error: "Email ou senha inválido" });
     }
-
     try {
-      const token = jwt.sign(admExists, process.env.SECRET);
-      res.status(200).send({
-        msg: "Administrador logado com sucesso",
+      delete admExists.password
+      let token = jwt.sign(admExists, process.env.SECRET);
+      return res.status(200).json({
         adm: admExists,
-        token,
+        token: token,
       });
     } catch (err) {
       console.log(err);
-      res.status(500).send({ error: "Aconteceu um erro no servidor" });
+      return res.status(500).json({ error: "Aconteceu um erro no servidor" });
     }
   });
-
-  app.patch("/adm/about", async (req, res) => {
-    const about = req.body;
-
+  //Pega o texto do About
+  app.get("/about", async (req, res) => {
+    let about = await getTxt();
+    return res.status(200).json({ msg: "Texto obtido com sucesso ", about });
+  });
+  //Modifica o texto do About
+  app.patch("/adm/about", validate, async (req, res) => {
+    let about = req.body;
     if (!about.text) {
-      res.status(400).send({ error: "Digite algum texto" });
+      return res.status(400).json({ error: "Digite algum texto" });
     }
-    await changeTxt(about);
-    res.status(200).send({ msg: "Texto trocado com sucesso" });
+    try {
+      await changeTxt(about);
+      return res.status(200).json({ msg: "Texto trocado com sucesso", about });
+    } catch (err) {
+      return res.status(400).json({ error: "Aconteceu um erro no servidor" });
+    }
   });
-
-  app.get("/about", async (req,res) => {
-    let about = await getTxt()
-    res.status(200).send({ msg: "Texto obtido com sucesso ", about})
-  })
-
-  app.get("/adm/list", async (req, res) => {
+  //Exibi todos os usuarios
+  app.get("/adm/list", validate, async (req, res) => {
     try {
       let lista = await showUsers();
-      res.status(200).send({ msg: "Usuários listados com sucesso", lista });
+      return res
+        .status(200)
+        .json({ msg: "Usuários listados com sucesso", lista });
     } catch (erro) {
       console.log(erro);
-      res.status(404).send({ err: "Usuários não encontrados" });
+      return res.status(404).json({ err: "Usuários não encontrados" });
     }
   });
 }

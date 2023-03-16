@@ -5,7 +5,7 @@ import {
 } from "../controller/userController.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { validate } from "../authenticantion/auth.js";
+import { validate } from "../authentication/auth.js";
 
 export function userRoute(app) {
   //Cadastro
@@ -72,10 +72,10 @@ export function userRoute(app) {
 
     try {
       await registerUser(user);
-      res.status(201).send({ msg: "Usuário criado com sucesso" });
+      return res.status(201).send({ msg: "Usuário criado com sucesso" });
     } catch (err) {
       console.log(err);
-      res.status(500).send({ error: "Aconteceu um erro no servidor" });
+      return res.status(500).send({ error: "Aconteceu um erro no servidor" });
     }
   });
   //Login
@@ -104,12 +104,12 @@ export function userRoute(app) {
 
     try {
       const token = jwt.sign(userExists, process.env.SECRET);
-      res
+      return res
         .status(200)
         .send({ msg: "Usuário logado com sucesso", user: userExists, token });
     } catch (err) {
       console.log(err);
-      res.status(500).send({ error: "Aconteceu um erro no servidor" });
+      return res.status(500).send({ error: "Aconteceu um erro no servidor" });
     }
   });
   //pegando as informações do usuario
@@ -117,8 +117,8 @@ export function userRoute(app) {
     const id = req.params.id;
     let user = await infoUser(id);
     if (!user) {
-      res.status(404).send({ error: "Usuário não encontrado" });
+      return res.status(404).send({ error: "Usuário não encontrado" });
     }
-    res.status(200).send(user);
+    return res.status(200).send(user);
   });
 }
