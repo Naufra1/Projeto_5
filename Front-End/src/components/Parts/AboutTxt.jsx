@@ -8,7 +8,7 @@ function AboutTxt() {
     useEffect(() => {
       axios.get(url)
       .then(resp => {
-        setAboutText(`${resp.data.text}`)
+        setAboutText(`${resp.data.about.text}`)
       })
     }, [])
 

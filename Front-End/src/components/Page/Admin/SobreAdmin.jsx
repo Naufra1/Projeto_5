@@ -1,31 +1,38 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
-import AboutTxt from "../../Parts/AboutTxt";
+import { useEffect, useState } from "react";
 
+import AboutTxt from "../../Parts/AboutTxt";
+import Title from "../../Parts/Title";
 
 function SobreAdmin() {
-  const [about,setAbout] = useState('??')
-  const urlAdm = "http://localhost:3000/adm/about"
+  const [about, setAbout] = useState('');
+  const [value, setValue] = useState('')
+  const url = "http://localhost:3000/adm/about";
 
-  const text = about
+  function handleSubmit(e) {
+    e.preventDefault();
+    return setAbout(value);
+  }
 
   useEffect(() => {
-    axios.patch(urlAdm,{
-      text
-    })
-    .then(resp => {
-      console.log(resp.data)
-    })
-    .catch(err => console.log(err))
-  }, [about])
-  
+    axios
+      .patch(url, {text: about})
+      .then((resp) => {
+        console.log(resp.data);
+      })
+      .catch((err) => console.log(err));
+  }, [about]);
+
   return (
-    <>
-    <AboutTxt />
-    <textarea onChange={(e) => setAbout(e.target.value)}></textarea>
-    </>
-  )
+    <section>
+      <Title titulo="Sobre Nós" />
+      <AboutTxt />
+      <form onSubmit={handleSubmit}>
+        <textarea onChange={(e) => {setValue(e.target.value)}} rows="2"></textarea>
+        <button>enviar</button>
+      </form>
+    </section>
+  );
 }
 
-export default SobreAdmin
+export default SobreAdmin;
