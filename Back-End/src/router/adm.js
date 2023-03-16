@@ -5,6 +5,7 @@ import {
   registerAdmin,
   showUsers,
   validateAdm,
+  getTxt
 } from "../controller/admController.js";
 import { validate } from "../authenticantion/auth.js";
 
@@ -69,7 +70,7 @@ export function admRoute(app) {
     }
   });
 
-  app.patch("/adm/about", validate, async (req, res) => {
+  app.patch("/adm/about", async (req, res) => {
     const about = req.body;
 
     if (!about.text) {
@@ -78,6 +79,11 @@ export function admRoute(app) {
     await changeTxt(about);
     res.status(200).send({ msg: "Texto trocado com sucesso" });
   });
+
+  app.get("/about", async (req,res) => {
+    let about = await getTxt()
+    res.status(200).send({ msg: "Texto obtido com sucesso ", about})
+  })
 
   app.get("/adm/list", async (req, res) => {
     try {

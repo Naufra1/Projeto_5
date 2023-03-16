@@ -26,6 +26,12 @@ export async function showUsers() {
 
 export async function changeTxt(about) {
   return openDb().then((db) => {
-    return db.run(`UPDATE About SET text = ? WHERE id = 1 `, [about.text]);
+    return db.run(`UPDATE About SET text = ? WHERE id = 1 `, [about]);
   });
+}
+
+export async function getTxt(about) {
+  return openDb().then((db) => {
+    return db.get(`SELECT text FROM About`)
+  })
 }
