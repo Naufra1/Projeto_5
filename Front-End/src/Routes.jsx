@@ -13,7 +13,10 @@ import Home from "./components/Page/Home";
 import Login from "./components/Page/Login";
 import App from "./App";
 import ErrorPage from "./components/Page/ErrorPage";
-import SobreAdmin from "./components/Page/Admin/SobreAdmin";
+import AdmHome from "./components/Page/Admin/AdminPages/AdmHome";
+import SobreAdmin from "./components/Page/Admin/AdminPages/SobreAdmin";
+import FuncAdmin from "./components/Page/Admin/AdminPages/FuncAdmin";
+import AdmPages from "./components/Page/Admin/AdmPages";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +28,11 @@ export const router = createBrowserRouter(
       <Route path="/duvidas" element={<Duvidas />} />
       <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/admin" element={<SobreAdmin />} />
+      <Route path="/admin" element={<AdmPages />}>
+        <Route index element={<AdmHome />} />
+        <Route path="/admin/about" element={<SobreAdmin />} />
+        <Route path="/admin/users" element={<FuncAdmin />} />
+      </Route>
     </Route>
   )
 );
