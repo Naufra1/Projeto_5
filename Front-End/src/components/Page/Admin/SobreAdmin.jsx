@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import AboutTxt from "../../Parts/AboutTxt";
 import Title from "../../Parts/Title";
 
 function SobreAdmin() {
-  const [about, setAbout] = useState('');
-  const [value, setValue] = useState('')
+  const [about, setAbout] = useState("");
+  const [value, setValue] = useState("");
   const url = "http://localhost:3000/adm/about";
 
   function handleSubmit(e) {
@@ -16,7 +16,7 @@ function SobreAdmin() {
 
   useEffect(() => {
     axios
-      .patch(url, {text: about})
+      .patch(url, { text: about })
       .then((resp) => {
         console.log(resp.data);
       })
@@ -28,7 +28,12 @@ function SobreAdmin() {
       <Title titulo="Sobre Nós" />
       <AboutTxt />
       <form onSubmit={handleSubmit}>
-        <textarea onChange={(e) => {setValue(e.target.value)}} rows="2"></textarea>
+        <textarea
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+          rows="2"
+        ></textarea>
         <button>enviar</button>
       </form>
     </section>
