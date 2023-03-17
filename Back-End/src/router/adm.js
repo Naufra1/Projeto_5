@@ -54,8 +54,8 @@ export function admRoute(app) {
       return res.status(400).json({ error: "Email ou senha inválido" });
     }
     try {
-      delete admExists.password
-      let token = jwt.sign(admExists, process.env.SECRET);
+      delete admExists.password;
+      let token = jwt.sign(admExists, process.env.SECRET, { expiresIn: 86400 });
       return res.status(200).json({
         adm: admExists,
         token: token,
