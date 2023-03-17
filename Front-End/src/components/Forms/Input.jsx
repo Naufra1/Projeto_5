@@ -1,10 +1,20 @@
 import "./Input.css";
 
-function Input({ name, type, text, placeholder, pattern, required, handleOnChange }) {
+function Input({
+  value,
+  name,
+  type,
+  text,
+  placeholder,
+  pattern,
+  customClass,
+  handleOnChange,
+}) {
   return (
-    <div className="box-input">
+    <div className={`box-input ${customClass}`}>
       <label htmlFor={name}>{text}</label>
       <input
+        value={value}
         type={type}
         name={name}
         id={name}

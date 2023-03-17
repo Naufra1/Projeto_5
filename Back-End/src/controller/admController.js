@@ -19,7 +19,7 @@ export async function registerAdmin(adm) {
 export async function showUsers() {
   return openDb().then((db) => {
     return db.all(
-      `SELECT name,email,password,sintomas,profissional,risco,sexo,idade,municipio FROM Users`
+      `SELECT * FROM Users`
     );
   });
 }

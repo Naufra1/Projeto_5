@@ -1,12 +1,11 @@
 import Resposta from "../Parts/Accordion";
-import Title from "../Parts/Title";
+import Title from "../Layout/Title";
 
 function Duvidas() {
   return (
     <section>
       <Title titulo="Perguntas Frequentes" />
-        <Resposta />
-
+      <Resposta />
     </section>
   );
 }

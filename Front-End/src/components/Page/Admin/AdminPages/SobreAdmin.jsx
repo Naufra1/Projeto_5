@@ -1,22 +1,29 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import AboutTxt from "../../Parts/AboutTxt";
-import Title from "../../Parts/Title";
+import AboutTxt from "../../../Parts/AboutTxt";
+import Title from "../../../Layout/Title";
 
 function SobreAdmin() {
   const [about, setAbout] = useState("");
   const [value, setValue] = useState("");
   const url = "http://localhost:3000/adm/about";
+  const auth = JSON.parse(sessionStorage.getItem("token"));
 
   function handleSubmit(e) {
     e.preventDefault();
     return setAbout(value);
   }
+  // sessionStorage.clear()
 
   useEffect(() => {
+    console.log(auth)
     axios
-      .patch(url, { text: about })
+      .patch(url, { text: about }, {
+        headers: {
+          authorization: `Bearer ${auth}`
+        }
+      })
       .then((resp) => {
         console.log(resp.data);
       })

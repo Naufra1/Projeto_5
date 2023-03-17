@@ -43,13 +43,14 @@ export default function LoginProvider({ children }) {
       password: resp.data.password,
       success: true
     });
-    localStorage.setItem("user_data", JSON.stringify(resp.data.adm));
-    console.log(resp.data);
+    sessionStorage.setItem("user", JSON.stringify(resp.data));
+    sessionStorage.setItem("token", JSON.stringify(resp.data.token));
+    console.log(resp.data.email);
   }
 
   function handleLogout() {
     setUser({ email: "", password: "" });
-    localStorage.clear();
+    sessionStorage.clear();
   }
 
   return (
