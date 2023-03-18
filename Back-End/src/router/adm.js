@@ -7,7 +7,6 @@ import {
   validateAdm,
   getTxt,
   deleteUser,
-  patchUser,
 } from "../controller/admController.js";
 import { validate } from "../authentication/auth.js";
 
@@ -109,22 +108,22 @@ export function admRoute(app) {
     }
   });
   //Modifica o usuario escolhido
-  app.patch("/adm/update/:id", validate, async (req, res) => {
-    const id = req.params.id;
-    const field = req.body;
+  // app.patch("/adm/update/:id", validate, async (req, res) => {
+  //   const id = req.params.id;
+  //   const field = req.body;
 
-    let salt = await bcrypt.genSalt(10);
-    let hashPassword = await bcrypt.hash(field.password, salt);
-    field = {
-      ...field,
-      password: hashPassword,
-      origin_password: field.password,
-    };
-    try {
-      await patchUser(field, id);
-      return res.status(200).send({ msg: "Usuário modificado com sucesso" });
-    } catch (err) {
-      return res.status(404).send({ erro: "Usuário não encontrado" });
-    }
-  });
+  //   let salt = await bcrypt.genSalt(10);
+  //   let hashPassword = await bcrypt.hash(field.password, salt);
+  //   field = {
+  //     ...field,
+  //     password: hashPassword,
+  //     origin_password: field.password,
+  //   };
+  //   try {
+  //     await patchUser(field, id);
+  //     return res.status(200).send({ msg: "Usuário modificado com sucesso" });
+  //   } catch (err) {
+  //     return res.status(404).send({ erro: "Usuário não encontrado" });
+  //   }
+  // });
 }

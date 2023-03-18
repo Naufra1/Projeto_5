@@ -40,12 +40,12 @@ export async function deleteUser(id) {
   });
 }
 
-export async function patchUser(field, id) {
-  const field_property = Object.keys(field)[0];
-  let value = field[field_property];
-  return openDb().then((db) => {
-    return db.run(`UPDATE users SET ${user_property}=? WHERE user_id=${id}`, [
-      value,
-    ]);
-  });
-}
+// export async function patchUser(field, id) {
+//   const field_property = Object.keys(field)[0];
+//   let value = field[field_property];
+//   return openDb().then((db) => {
+//     return db.run(`UPDATE users SET ${user_property}=? WHERE user_id=${id}`, [
+//       value,
+//     ]);
+//   });
+// }
