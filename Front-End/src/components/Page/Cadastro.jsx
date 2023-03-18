@@ -47,12 +47,14 @@ function Cadastro() {
           <Input
             type="text"
             name="password"
+            pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/"
             text="Senha"
             placeholder="Digite a senha"
           />
           <Input
             type="text"
             name="password"
+            pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/"
             text="Confimação da senha"
             placeholder="Digite a senha novamente"
           />
