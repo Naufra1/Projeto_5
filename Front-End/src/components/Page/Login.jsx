@@ -4,19 +4,20 @@ import Title from "../Layout/Title";
 
 import { useContext } from "react";
 import { LoginContext } from "../../context/LoginContext";
-import { Navigate } from 'react-router-dom'
+import { Navigate } from "react-router-dom";
 
 function Login() {
   const { setUser, user, handleLogin } = useContext(LoginContext);
 
   function handleChange(e) {
-    setUser(prev => ({...prev, [e.target.name]:e.target.value}))
+    setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
   return (
     <section className="form">
       <Title titulo="Login" />
-      {user.success && <Navigate to="/admin" replace={true} />}
+      {user.admin && <Navigate to="/admin" replace={true} />}
+      {user.client && <Navigate to="/" replace={true} />}
       <form onSubmit={handleLogin}>
         <div>
           <Input

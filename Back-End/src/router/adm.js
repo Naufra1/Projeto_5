@@ -6,6 +6,8 @@ import {
   showUsers,
   validateAdm,
   getTxt,
+  deleteUser,
+  patchUser,
 } from "../controller/admController.js";
 import { validate } from "../authentication/auth.js";
 
@@ -59,7 +61,6 @@ export function admRoute(app) {
         adm: admExists,
         token: token,
       });
-
     } catch (err) {
       console.log(err);
       return res.status(500).send({ error: "Aconteceu um erro no servidor" });
@@ -93,6 +94,37 @@ export function admRoute(app) {
     } catch (err) {
       console.log(err);
       return res.status(404).send({ err: "Usuários não encontrados" });
+    }
+  });
+  //Deletar o usuario escolhido
+  app.delete("/adm/delete/:id", validate, async (req, res) => {
+    const id = req.params.id;
+    try {
+      let deletedUser = await deleteUser(id);
+      return res
+        .status(200)
+        .send({ msg: "Usuário deletado com sucesso", deletedUser });
+    } catch (err) {
+      return res.status(404).send({ erro: "Usuário não encontrado" });
+    }
+  });
+  //Modifica o usuario escolhido
+  app.patch("/adm/update/:id", validate, async (req, res) => {
+    const id = req.params.id;
+    const field = req.body;
+
+    let salt = await bcrypt.genSalt(10);
+    let hashPassword = await bcrypt.hash(field.password, salt);
+    field = {
+      ...field,
+      password: hashPassword,
+      origin_password: field.password,
+    };
+    try {
+      await patchUser(field, id);
+      return res.status(200).send({ msg: "Usuário modificado com sucesso" });
+    } catch (err) {
+      return res.status(404).send({ erro: "Usuário não encontrado" });
     }
   });
 }

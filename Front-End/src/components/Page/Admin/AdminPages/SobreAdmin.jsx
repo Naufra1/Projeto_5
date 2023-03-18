@@ -8,22 +8,24 @@ function SobreAdmin() {
   const [about, setAbout] = useState("");
   const [value, setValue] = useState("");
   const url = "http://localhost:3000/adm/about";
-  const auth = JSON.parse(sessionStorage.getItem("token"));
+  const auth = JSON.parse(sessionStorage.getItem("admin-token"));
 
   function handleSubmit(e) {
     e.preventDefault();
     return setAbout(value);
   }
-  // sessionStorage.clear()
 
   useEffect(() => {
-    console.log(auth)
     axios
-      .patch(url, { text: about }, {
-        headers: {
-          authorization: `Bearer ${auth}`
+      .patch(
+        url,
+        { text: about },
+        {
+          headers: {
+            authorization: `Bearer ${auth}`,
+          },
         }
-      })
+      )
       .then((resp) => {
         console.log(resp.data);
       })

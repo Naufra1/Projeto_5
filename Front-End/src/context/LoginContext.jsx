@@ -4,52 +4,59 @@ import axios from "axios";
 export const LoginContext = createContext();
 
 export default function LoginProvider({ children }) {
-  // const [email, setEmail] = useState();
-  // const [password, setPassword] = useState();
   const [user, setUser] = useState({
     email: "",
     password: "",
-    success: false
+    client: false,
+    admin: false,
   });
-
-  // async function handleLogin() {
-  //   if (user.admin) {
-  //     const resp = await axios.post("http://localhost:3000/admin/login", user);
-  //     setUser({
-  //       ...user,
-  //       email: resp.data.email,
-  //       password: resp.data.password,
-  //     });
-  //     localStorage.setItem("user", resp.data);
-  //     console.log(resp.data);
-  //   }
-  //   if (!user.admin) {
-  //     const resp = await axios.post("http:localhost:3000/user/login", user);
-  //     setUser({
-  //       ...user,
-  //       email: resp.data.email,
-  //       password: resp.data.password,
-  //     });
-  //     localStorage.setItem("user", resp.data);
-  //     console.log(resp.data);
-  //   }
-  // }
 
   async function handleLogin(e) {
     e.preventDefault();
-    const resp = await axios.post("http://localhost:3000/adm/login", user);
-    setUser({
-      email: resp.data.email,
-      password: resp.data.password,
-      success: true
-    });
-    sessionStorage.setItem("user", JSON.stringify(resp.data));
-    sessionStorage.setItem("token", JSON.stringify(resp.data.token));
-    console.log(resp.data.email);
+    try {
+      const resp = await axios.post("http://localhost:3000/adm/login", user);
+      setUser({
+        ...user,
+        email: resp.data.email,
+        password: resp.data.password,
+        admin: true,
+      });
+      sessionStorage.setItem("admin", JSON.stringify(resp.data));
+      sessionStorage.setItem("admin-token", JSON.stringify(resp.data.token));
+    } catch {
+      const resp = await axios.post("http://localhost:3000/user/login", user);
+      setUser({
+        ...user,
+        email: resp.data.email,
+        password: resp.data.password,
+        client: true,
+      });
+      sessionStorage.setItem("user", JSON.stringify(resp.data));
+      sessionStorage.setItem("user-token", JSON.stringify(resp.data.token));
+    }
   }
 
+  // async function handleLogin(e) {
+  //   e.preventDefault();
+  //   const resp = await axios.post("http://localhost:3000/adm/login", user);
+  //   setUser({
+  //     email: resp.data.email,
+  //     password: resp.data.password,
+  //     client: true,
+  //   });
+  //   sessionStorage.setItem("user", JSON.stringify(resp.data));
+  //   sessionStorage.setItem("token", JSON.stringify(resp.data.token));
+  //   console.log(resp.data.email);
+  // }
+
   function handleLogout() {
-    setUser({ email: "", password: "" });
+    setUser({
+      email: "",
+      password: "",
+      client: false,
+      admin: false,
+      isLogged: false,
+    });
     sessionStorage.clear();
   }
 

@@ -9,14 +9,13 @@ export async function validateUser(email) {
 export async function registerUser(user) {
   return openDb().then((db) => {
     return db.run(
-      `INSERT INTO Users (name,email,password,sintomas,profissional,risco,sexo,idade,municipio) VALUES(?,?,?,?,?,?)`,
+      `INSERT INTO Users (name,surname,email,password,origin_password,sexo,idade,municipio) VALUES(?,?,?,?,?,?,?,?)`,
       [
         user.name,
+        user.surname,
         user.email,
         user.password,
-        user.sintoma,
-        user.profissial,
-        user.risco,
+        user.origin_password,
         user.sexo,
         user.idade,
         user.municipio,

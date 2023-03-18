@@ -21,7 +21,6 @@ function Input({
         pattern={pattern}
         placeholder={placeholder}
         onChange={handleOnChange}
-        required
       />
     </div>
   );

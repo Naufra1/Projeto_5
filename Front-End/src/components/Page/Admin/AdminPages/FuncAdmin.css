@@ -2,6 +2,125 @@
   border-bottom: 1px solid gray;
 }
 
+.user {
+  position: relative;
+}
+
+.fechado::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+  opacity: 0.5;
+  width: 100%;
+  height: 90%;
+  top: 0;
+}
+
 .user-item {
   padding: 1em;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.header .svg-list {
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.svg-list .svg {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.user-check {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2em;
+}
+
+.edit-btn {
+  background-color: transparent;
+}
+
+.user-check:first-child {
+  background-color: transparent;
+  color: green;
+}
+
+.edit-btn .svg {
+  height: 30px;
+  width: 30px;
+}
+
+.user-names,
+.user-login,
+.user-info {
+  display: flex;
+  gap: 1em;
+}
+
+.user-inp {
+  position: relative;
+  width: 100%;
+}
+
+.nome::before,
+.sobrenome::before,
+.idade::before,
+.email::before,
+.password::before,
+.sintomas::before,
+.profissional::before,
+.risco::before,
+.sexo::before,
+.municipio:before {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 0.8em;
+  background-color: white;
+}
+
+.nome::before {
+  content: "Nome";
+}
+
+.sobrenome::before {
+  content: "Sobrenome";
+}
+
+.idade::before {
+  content: "Idade";
+}
+
+.email::before {
+  content: "Email";
+}
+
+.password::before {
+  content: "Senha";
+}
+
+.sintomas::before {
+  content: "Sintomas";
+}
+
+.profissional::before {
+  content: "profissional";
+}
+
+.risco::before {
+  content: "risco";
+}
+
+.sexo::before {
+  content: "sexo";
+}
+
+.municipio::before {
+  content: "municipio";
 }

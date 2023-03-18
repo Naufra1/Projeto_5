@@ -24,22 +24,12 @@ export function userRoute(app) {
       return res.status(400).send({ error: "A senha é obrigatório" });
     }
 
-    if (!user.sintomas) {
-      return res.status(400).send({ error: "A senha é obrigatório" });
-    }
-
-    if (!user.profissional) {
-      return res.status(400).send({ error: "Escolha a opção de profissão" });
-    }
-
-    if (!user.risco) {
-      return res
-        .status(400)
-        .send({ error: "Escolha se é você está em situação de risco" });
-    }
-
     if (!user.idade) {
       return res.status(400).send({ error: "A idade é obrigatório" });
+    }
+
+    if (!user.sexo) {
+      return res.status(400).send({ error: "O sexo é obrigatório" });
     }
 
     if (!user.municipio) {
@@ -63,6 +53,7 @@ export function userRoute(app) {
     user = {
       ...user,
       password: hashPassword,
+      origin_password: user.password,
     };
 
     let userExists = await validateUser(user.email);
