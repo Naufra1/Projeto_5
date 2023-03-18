@@ -41,75 +41,11 @@ export async function deleteUser(id) {
 }
 
 export async function patchUser(field, id) {
-  if (field.name !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET name = ? WHERE id = ${id}`, [field.name]);
-    });
-  }
-  if (field.email !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET email = ? WHERE id = ${id}`, [
-        field.email,
-      ]);
-    });
-  }
-  if (field.password !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET password = ? WHERE id = ${id}`, [
-        field.password,
-      ]);
-    });
-  }
-  if (field.origin_password !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET password = ? WHERE id = ${id}`, [
-        field.password,
-      ]);
-    });
-  }
-  if (field.sintomas !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET sintomas = ? WHERE id = ${id}`, [
-        field.sintomas,
-      ]);
-    });
-  }
-  if (field.profissional !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET profissional = ? WHERE id = ${id}`, [
-        field.profissional,
-      ]);
-    });
-  }
-  if (field.risco !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET risco = ? WHERE id = ${id}`, [
-        field.risco,
-      ]);
-    });
-  }
-  if (field.sexo !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET sexo = ? WHERE id = ${id}`, [field.sexo]);
-    });
-  }
-  if (field.idade !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET idade = ? WHERE id = ${id}`, [
-        field.idade,
-      ]);
-    });
-  }
-  if (field.municipio !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET municipio = ? WHERE id = ${id}`, [
-        field.municipio,
-      ]);
-    });
-  }
+  const field_property = Object.keys(field)[0];
+  let value = field[field_property];
   return openDb().then((db) => {
-    return db.run(`UPDATE Users SET surname = ? WHERE id = ${id}`, [
-      field.surname,
+    return db.run(`UPDATE users SET ${user_property}=? WHERE user_id=${id}`, [
+      value,
     ]);
   });
 }
