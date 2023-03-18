@@ -107,11 +107,9 @@ export async function patchUser(field, id) {
       ]);
     });
   }
-  if (field.surname !== "") {
-    return openDb().then((db) => {
-      return db.run(`UPDATE Users SET surname = ? WHERE id = ${id}`, [
-        field.surname,
-      ]);
-    });
-  }
+  return openDb().then((db) => {
+    return db.run(`UPDATE Users SET surname = ? WHERE id = ${id}`, [
+      field.surname,
+    ]);
+  });
 }

@@ -42,7 +42,7 @@ function FuncAdmin() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/adm/list", {
+      .get("https://localhost:3000/adm/list", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -73,7 +73,7 @@ function FuncAdmin() {
                     onClick={async (e) => {
                       e.preventDefault();
                       const resp = await axios.delete(
-                        `http://localhost:3000/adm/delete/${user.id}`,
+                        `https://localhost:3000/adm/delete/${user.id}`,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,
@@ -93,7 +93,7 @@ function FuncAdmin() {
                   onSubmit={async (e) => {
                     e.preventDefault();
                     const resp = await axios.patch(
-                      `http://localhost:3000/adm/update/${user.id}`,
+                      `https://localhost:3000/adm/update/${user.id}`,
                       newInfo,
                       {
                         headers: {

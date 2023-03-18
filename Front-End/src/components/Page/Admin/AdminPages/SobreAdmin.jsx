@@ -7,7 +7,7 @@ import Title from "../../../Layout/Title";
 function SobreAdmin() {
   const [about, setAbout] = useState("");
   const [value, setValue] = useState("");
-  const url = "http://localhost:3000/adm/about";
+  const url = "https://localhost:3000/adm/about";
   const auth = JSON.parse(sessionStorage.getItem("admin-token"));
 
   function handleSubmit(e) {
