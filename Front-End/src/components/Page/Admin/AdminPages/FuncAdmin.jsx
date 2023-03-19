@@ -4,6 +4,7 @@ import {
   BsFillPencilFill,
   BsCheckLg,
   BsX,
+  BsArrowRepeat,
 } from "react-icons/bs";
 import Accordion from "react-bootstrap/Accordion";
 import { useState, useEffect } from "react";
@@ -16,34 +17,22 @@ import Button from "../../../Forms/Button";
 function FuncAdmin() {
   const [users, setUsers] = useState();
   const [edit, setEdit] = useState("fechado");
-  const [newInfo, setNewInfo] = useState({
-    name: "",
-    surname: "",
-    idade: "",
-    email: "",
-    password: "",
-    sintomas: "",
-    profissional: "",
-    risco: "",
-    sexo: "",
-    municipio: "",
-  });
+  const [newInfo, setNewInfo] = useState();
   const [toggle, setToggle] = useState(false);
   const token = JSON.parse(sessionStorage.getItem("admin-token"));
 
-  function handleToggle(e) {
+  function handleToggle() {
     setToggle(!toggle);
-    console.log(toggle);
+    setEdit("fechado");
   }
 
   function handleChange(e) {
-    setNewInfo((prev) => ({ ...prev, [e.target.name]: e.target.placeholder }));
-    console.log(newInfo);
+    setNewInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/adm/list", {
+      .get("http://vacineirj-api.onrender.com/adm/list", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,15 +46,20 @@ function FuncAdmin() {
   return (
     <section>
       <Title titulo="Lista de Usuários" />
-      <button onClick={handleToggle}>refresh</button>
+      <div className="refresh-btn">
+        <Button
+          handleOnClick={handleToggle}
+          text={<BsArrowRepeat />}
+          text2="recarregar"
+        ></Button>
+      </div>
       {users &&
         users.map((user) => (
           <Accordion className="box-user" bsPrefix="false" key={user.id} flush>
             <Accordion.Item bsPrefix="a" className="user-item" eventKey="0">
               <Accordion.Header
-                onClick={(e) => {
+                onClick={() => {
                   setNewInfo(user);
-                  console.log(newInfo);
                 }}
                 bsPrefix="a"
               >
@@ -80,7 +74,7 @@ function FuncAdmin() {
                     onClick={async (e) => {
                       e.preventDefault();
                       const resp = await axios.delete(
-                        `http://localhost:3000/adm/delete/${user.id}`,
+                        `http://vacineirj-api.onrender.com/adm/delete/${user.id}`,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,
@@ -90,7 +84,7 @@ function FuncAdmin() {
                       setToggle(!toggle);
                     }}
                   >
-                    <BsFillTrash3Fill className="svg" />
+                    <BsFillTrash3Fill className="svg trash" />
                   </div>
                 </div>
               </Accordion.Header>
@@ -98,12 +92,12 @@ function FuncAdmin() {
                 <form
                   className={`user ${edit}`}
                   onReset={() => {
-                    setEdit('fechado')
+                    setEdit("fechado");
                   }}
                   onSubmit={async (e) => {
                     e.preventDefault();
                     const resp = await axios.patch(
-                      `http://localhost:3000/adm/update/${user.id}`,
+                      `http://vacineirj-api.onrender.com/adm/update/${user.id}`,
                       newInfo,
                       {
                         headers: {
@@ -111,7 +105,7 @@ function FuncAdmin() {
                         },
                       }
                     );
-                    console.log(resp);
+                    setEdit("fechado");
                   }}
                 >
                   <div className="user-names">
@@ -131,10 +125,10 @@ function FuncAdmin() {
                     />
                     <Input
                       handleOnChange={handleChange}
-                      name="idade"
+                      name="data"
                       type="number"
-                      customClass="user-inp idade"
-                      placeholder={user.idade}
+                      customClass="user-inp data"
+                      placeholder={user.data}
                     />
                     <Input
                       handleOnChange={handleChange}
@@ -162,13 +156,20 @@ function FuncAdmin() {
                     />
                     <Input
                       handleOnChange={handleChange}
-                      name="password"
+                      name="origin_password"
                       type="text"
                       customClass="user-inp password"
                       placeholder={user.origin_password}
                     />
                   </div>
                   <div className="user-info">
+                    <Input
+                      handleOnChange={handleChange}
+                      name="covid"
+                      type="text"
+                      customClass="user-inp covid"
+                      placeholder={user.covid}
+                    />
                     <Input
                       handleOnChange={handleChange}
                       name="sintomas"
@@ -199,7 +200,7 @@ function FuncAdmin() {
                           text={<BsCheckLg className="svg send" />}
                         />
                       </div>
-                      <div>
+                      <div className="user-check">
                         <Button
                           type="reset"
                           classButton="edit-btn"
@@ -215,7 +216,7 @@ function FuncAdmin() {
                           setEdit("editar");
                         }}
                       >
-                        <BsFillPencilFill className="svg" />
+                        <BsFillPencilFill className="svg edit" />
                       </div>
                     </>
                   )}

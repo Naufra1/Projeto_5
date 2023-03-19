@@ -9,7 +9,7 @@ import { LoginContext } from "../../context/LoginContext";
 import "./Navbar.css";
 
 function Menu() {
-  const { user, handleLogout } = useContext(LoginContext);
+  const { handleLogout } = useContext(LoginContext);
   const admLogged = sessionStorage.getItem("admin");
   const userLogged = sessionStorage.getItem("user");
 
@@ -48,11 +48,6 @@ function Menu() {
                 <LinkContainer to="/sobre">
                   <Nav.Link>Sobre</Nav.Link>
                 </LinkContainer>
-                {userLogged && (
-                  <LinkContainer to="/funcionalidades">
-                    <Nav.Link>Funcionalidades</Nav.Link>
-                  </LinkContainer>
-                )}
                 <NavDropdown title="Duvidas?" id="basic-nav-dropdown">
                   <NavDropdown.Item>
                     <LinkContainer to="/duvidas">
@@ -68,11 +63,20 @@ function Menu() {
               </Nav>
               <div className="navbar-login">
                 {userLogged ? (
-                  <LinkContainer to="/login">
-                    <Nav.Link className="link" onClick={handleLogout}>
-                      Deslogar
-                    </Nav.Link>
-                  </LinkContainer>
+                  <NavDropdown title="Perfil" id="basic-nav-dropdown">
+                    <NavDropdown.Item>
+                      <LinkContainer to="/Funcionalidades">
+                        <Nav.Link>Dados do Perfil</Nav.Link>
+                      </LinkContainer>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <LinkContainer to="/login">
+                        <Nav.Link className="link" onClick={handleLogout}>
+                          Sair
+                        </Nav.Link>
+                      </LinkContainer>
+                    </NavDropdown.Item>
+                  </NavDropdown>
                 ) : (
                   <>
                     <LinkContainer to="/cadastro">

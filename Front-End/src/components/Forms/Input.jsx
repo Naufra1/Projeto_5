@@ -9,11 +9,13 @@ function Input({
   pattern,
   customClass,
   handleOnChange,
+  checked,
 }) {
   return (
     <div className={`box-input ${customClass}`}>
       <label htmlFor={name}>{text}</label>
       <input
+        disabled={checked ? true : false}
         value={value}
         type={type}
         name={name}

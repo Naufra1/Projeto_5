@@ -6,7 +6,6 @@
 
 .box-input label {
   font-size: 1.3rem;
-  width: 3rem;
 }
 
 .box-input input {
@@ -14,7 +13,7 @@
   border: 1px solid gray;
   border-radius: 5px;
   height: 3rem;
-  width: 100%;
+  width: 100% ;
   padding: 10px;
   margin-bottom: 10px;
 }

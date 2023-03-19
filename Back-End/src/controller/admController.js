@@ -43,7 +43,7 @@ export async function deleteUser(id) {
 export async function patchUser(user, id) {
   return openDb().then((db) => {
     return db.get(
-      `UPDATE Users SET name=?, surname=?, email=?, risco=?, sintomas=?, municipio=?, profissional=?, idade=?, password=?, sexo=?, origin_password=?  WHERE id=${id}`,
+      `UPDATE Users SET name=?, surname=?, email=?, risco=?, sintomas=?, municipio=?, profissional=?, data=?, password=?, sexo=?, origin_password=?, covid=?  WHERE id='${id}'`,
       [
         user.name,
         user.surname,
@@ -52,10 +52,11 @@ export async function patchUser(user, id) {
         user.sintomas,
         user.municipio,
         user.profissional,
-        user.idade,
+        user.data,
         user.password,
         user.sexo,
         user.origin_password,
+        user.covid,
       ]
     );
   });

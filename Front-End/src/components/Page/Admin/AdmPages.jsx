@@ -1,7 +1,9 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 function AdmPages() {
-  return <Outlet />
+  const admin = sessionStorage.getItem("admin");
+
+  return admin ? <Outlet /> : <Navigate to="/login" />;
 }
 
-export default AdmPages
+export default AdmPages;

@@ -13,32 +13,44 @@ export default function LoginProvider({ children }) {
 
   async function handleLogin(e) {
     e.preventDefault();
+    if (user.email === "") {
+      return alert("Digite o seu email");
+    }
+    if (user.password === "") {
+      return alert("Digite a sua senha");
+    }
     try {
-      const resp = await axios.post("http://localhost:3000/adm/login", user);
+      const resp = await axios.post(
+        "http://vacineirj-api.onrender.com/adm/login",
+        user
+      );
       setUser({
         ...user,
         email: resp.data.email,
         password: resp.data.password,
         admin: true,
       });
-      sessionStorage.setItem("admin", JSON.stringify(resp.data));
+      sessionStorage.setItem("admin", JSON.stringify(resp.data.adm));
       sessionStorage.setItem("admin-token", JSON.stringify(resp.data.token));
     } catch {
-      const resp = await axios.post("http://localhost:3000/user/login", user);
+      const resp = await axios.post(
+        "http://vacineirj-api.onrender.com/user/login",
+        user
+      );
       setUser({
         ...user,
         email: resp.data.email,
         password: resp.data.password,
         client: true,
       });
-      sessionStorage.setItem("user", JSON.stringify(resp.data));
+      sessionStorage.setItem("user", JSON.stringify(resp.data.user));
       sessionStorage.setItem("user-token", JSON.stringify(resp.data.token));
     }
   }
 
   // async function handleLogin(e) {
   //   e.preventDefault();
-  //   const resp = await axios.post("http://localhost:3000/adm/login", user);
+  //   const resp = await axios.post("http://vacineirj-api.onrender.com/adm/login", user);
   //   setUser({
   //     email: resp.data.email,
   //     password: resp.data.password,
