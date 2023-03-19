@@ -1,0 +1,14 @@
+.hero {
+  margin-top: 3em;
+  font-size: 1.8em;
+  text-align: start;
+}
+
+.hero h2 {
+  width: 600px;
+}
+
+.hero-btn {
+  height: 2em;
+  width: 7em;
+}

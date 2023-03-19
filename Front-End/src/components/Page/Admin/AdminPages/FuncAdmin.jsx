@@ -13,12 +13,15 @@ import "./FuncAdmin.css";
 import Title from "../../../Layout/Title";
 import Input from "../../../Forms/Input";
 import Button from "../../../Forms/Button";
+import Message from "../../../Layout/Message";
 
 function FuncAdmin() {
   const [users, setUsers] = useState();
   const [edit, setEdit] = useState("fechado");
   const [newInfo, setNewInfo] = useState();
   const [toggle, setToggle] = useState(false);
+  const [mensagem, setMensagem] = useState("");
+  const [type, setType] = useState();
   const token = JSON.parse(sessionStorage.getItem("admin-token"));
 
   function handleToggle() {
@@ -32,7 +35,7 @@ function FuncAdmin() {
 
   useEffect(() => {
     axios
-      .get("https://vacineirj-api.onrender.com/adm/list", {
+      .get("http://localhost:3000/adm/list", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -46,6 +49,7 @@ function FuncAdmin() {
   return (
     <section>
       <Title titulo="Lista de Usuários" />
+      {mensagem && <Message type={type} msg={mensagem} />}
       <div className="refresh-btn">
         <Button
           handleOnClick={handleToggle}
@@ -74,13 +78,19 @@ function FuncAdmin() {
                     onClick={async (e) => {
                       e.preventDefault();
                       const resp = await axios.delete(
-                        `https://vacineirj-api.onrender.com/adm/delete/${user.id}`,
+                        `http://localhost:3000/adm/delete/${user.id}`,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,
                           },
                         }
                       );
+                      setMensagem("");
+
+                      if (mensagem == "") {
+                        setMensagem("Usuário deletado com sucesso!");
+                        setType("success");
+                      }
                       setToggle(!toggle);
                     }}
                   >
@@ -97,7 +107,7 @@ function FuncAdmin() {
                   onSubmit={async (e) => {
                     e.preventDefault();
                     const resp = await axios.patch(
-                      `https://vacineirj-api.onrender.com/adm/update/${user.id}`,
+                      `http://localhost:3000/adm/update/${user.id}`,
                       newInfo,
                       {
                         headers: {
@@ -105,6 +115,12 @@ function FuncAdmin() {
                         },
                       }
                     );
+                    setMensagem("");
+
+                    if (mensagem == "") {
+                      setMensagem("Dados modificado com sucesso!");
+                      setType("success");
+                    }
                     setEdit("fechado");
                   }}
                 >

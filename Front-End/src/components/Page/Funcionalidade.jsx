@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import Button from "../Forms/Button";
 import Input from "../Forms/Input";
+import Message from "../Layout/Message";
 import Title from "../Layout/Title";
 
 import "./Estilos/Funcionalidade.css";
 
 function Funcionalidade() {
   let [newInfo, setNewInfo] = useState({});
+  const [mensagem, setMensagem] = useState("");
+  const [type, setType] = useState();
+
   const storage = JSON.parse(sessionStorage.getItem("user"));
   const id = storage.id;
   const token = JSON.parse(sessionStorage.getItem("user-token"));
@@ -19,17 +23,27 @@ function Funcionalidade() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     axios
-      .patch(`https://vacineirj-api.onrender.com/user/send/${id}`, newInfo, {
+      .patch(`http://localhost:3000/user/send/${id}`, newInfo, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((resp) => console.log(resp.data))
+      .then((resp) => {
+        setMensagem("");
+
+        if (mensagem == "") {
+          setMensagem("Dados enviado com sucesso. Obrigado por completar o cadastro!");
+          setType("success");
+        }
+        
+        console.log(resp.data);
+      })
       .catch((err) => console.log(err));
   }
 
   useEffect(() => {
     axios
-      .get(`https://vacineirj-api.onrender.com/user/${id}`, {
+      .get(`http://localhost:3000/user/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -44,6 +58,7 @@ function Funcionalidade() {
   return storage ? (
     <section>
       <Title titulo="Suas Informaçoes" />
+      {mensagem && <Message type={type} msg={mensagem} />}
       <form className="user" onSubmit={handleSubmit}>
         <h5>Informações do Cadastro:</h5>
         <div className="user-names">
