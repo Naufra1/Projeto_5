@@ -79,7 +79,7 @@ function Resposta() {
           O coronavírus pode contaminar objetos e superfícies ?
         </Accordion.Header>
         <Accordion.Body>
-          O grupo do coronavírus tem a capacidade de sobreviver fora do corpo
+          O grupo do coronavírus tem a capacdata de sobreviver fora do corpo
           humano e, por isso, os objetos e as superfícies não higienizados
           também podem ser fontes de contaminação. Lave as mãos após tocar em
           pontos como maçanetas e corrimãos, e não compartilhe objetos de uso

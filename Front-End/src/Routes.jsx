@@ -18,25 +18,21 @@ import SobreAdmin from "./components/Page/Admin/AdminPages/SobreAdmin";
 import FuncAdmin from "./components/Page/Admin/AdminPages/FuncAdmin";
 import AdmPages from "./components/Page/Admin/AdmPages";
 
-const admin = sessionStorage.getItem("admin");
-const user = sessionStorage.getItem("user");
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} errorElement={<ErrorPage />}>
       <Route index element={<Home />} />
       <Route path="/sobre" element={<About />} />
-      {user && <Route path="/funcionalidades" element={<Funcionalidade />} />}
+      <Route path="/Funcionalidades" element={<Funcionalidade />} />
       <Route path="/contato" element={<Contato />} />
       <Route path="/duvidas" element={<Duvidas />} />
       <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/login" element={<Login />} />
-      {admin && (
-        <Route path="/admin" element={<AdmPages />}>
-          <Route index element={<AdmHome />} />
-          <Route path="/admin/about" element={<SobreAdmin />} />
-          <Route path="/admin/users" element={<FuncAdmin />} />
-        </Route>
-      )}
+      <Route path="/admin" element={<AdmPages />}>
+        <Route index element={<AdmHome />} />
+        <Route path="/admin/about" element={<SobreAdmin />} />
+        <Route path="/admin/users" element={<FuncAdmin />} />
+      </Route>
     </Route>
   )
 );

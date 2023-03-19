@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import "./SobreAdmin.css";
 import AboutTxt from "../../../Parts/AboutTxt";
 import Title from "../../../Layout/Title";
+import Button from "../../../Forms/Button";
 
 function SobreAdmin() {
   const [about, setAbout] = useState("");
   const [value, setValue] = useState("");
-  const url = "http://localhost:3000/adm/about";
+  const url = "http://vacineirj-api.onrender.com/adm/about";
   const auth = JSON.parse(sessionStorage.getItem("admin-token"));
 
   function handleSubmit(e) {
@@ -36,14 +38,14 @@ function SobreAdmin() {
     <section>
       <Title titulo="Sobre Nós" />
       <AboutTxt />
-      <form onSubmit={handleSubmit}>
+      <form className="sobre-form" onSubmit={handleSubmit}>
         <textarea
           onChange={(e) => {
             setValue(e.target.value);
           }}
           rows="2"
         ></textarea>
-        <button>enviar</button>
+        <Button classButton="button-form" text="Enviar mudança"></Button>
       </form>
     </section>
   );

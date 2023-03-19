@@ -57,7 +57,7 @@ export function admRoute(app) {
     try {
       let token = jwt.sign(admExists, process.env.SECRET, { expiresIn: 86400 });
       return res.status(200).send({
-        adm: admExists,
+        admExists,
         token: token,
       });
     } catch (err) {

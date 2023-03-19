@@ -1,0 +1,36 @@
+.box-risco,
+.box-profissional,
+.box-covid {
+  width: 100% !important;
+  margin-top: 15px;
+  position: relative;
+}
+
+.select {
+  background-color: var(--main-bg);
+}
+
+.info-btn {
+  margin-top: 2em;
+  width: 100%;
+}
+
+.box-risco:before,
+.box-profissional:before,
+.box-covid::before {
+  top: -10px!important;
+  left: 10px;
+  font-size: 0.8em;
+  background-color: var(--main-bg);
+}
+
+.box-risco:before {
+  content: "Grupo de risco";
+  position: absolute;
+}
+
+.box-profissional:before {
+  content: "Profissional da área de saude";
+  position: absolute;
+  z-index: 1;
+}
