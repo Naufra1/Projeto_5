@@ -1,5 +1,20 @@
 .box-user {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--color-sec);
+}
+
+.refresh-btn {
+  margin: 5em 1.5em 1.3em 0;
+  text-align: end;
+}
+
+.refresh-btn Button {
+  background-color: transparent;
+}
+
+.refresh-btn Button svg {
+  margin-left: 1em;
+  height: 25px;
+  width: 25px;
 }
 
 .user {
@@ -9,7 +24,7 @@
 .fechado::after {
   content: "";
   position: absolute;
-  background-color: white;
+  background-color: var(--main-bg);
   opacity: 0.5;
   width: 100%;
   height: 90%;
@@ -36,10 +51,26 @@
   cursor: pointer;
 }
 
+.svg-list .edit {
+  color: blue;
+}
+
+.svg-list .trash {
+  color: red;
+}
+
 .user-check {
   display: flex;
   justify-content: flex-end;
   gap: 2em;
+}
+
+.user-check .send {
+  color: green;
+}
+
+.user-check .reset {
+  color: red;
 }
 
 .edit-btn {
@@ -48,7 +79,6 @@
 
 .user-check:first-child {
   background-color: transparent;
-  color: green;
 }
 
 .edit-btn .svg {
@@ -60,6 +90,7 @@
 .user-login,
 .user-info {
   display: flex;
+  flex-wrap: wrap;
   gap: 1em;
 }
 
@@ -70,19 +101,20 @@
 
 .nome::before,
 .sobrenome::before,
-.idade::before,
+.data::before,
 .email::before,
 .password::before,
 .sintomas::before,
 .profissional::before,
 .risco::before,
 .sexo::before,
-.municipio:before {
+.municipio::before,
+.covid::before {
   position: absolute;
   top: 5px;
   left: 10px;
   font-size: 0.8em;
-  background-color: white;
+  background-color: var(--main-bg);
 }
 
 .nome::before {
@@ -93,8 +125,8 @@
   content: "Sobrenome";
 }
 
-.idade::before {
-  content: "Idade";
+.data::before {
+  content: "data";
 }
 
 .email::before {
@@ -110,7 +142,7 @@
 }
 
 .profissional::before {
-  content: "profissional";
+  content: "Profissional da área da saúde";
 }
 
 .risco::before {
@@ -123,4 +155,17 @@
 
 .municipio::before {
   content: "municipio";
+}
+
+.covid::before {
+  content: "Já teve covid";
+  position: absolute;
+}
+
+@media only screen and (min-width: 800px) {
+  .user-names,
+  .user-login,
+  .user-info {
+    flex-wrap: nowrap;
+  }
 }

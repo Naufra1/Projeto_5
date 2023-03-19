@@ -1,0 +1,88 @@
+.cadastro {
+  width: 100% !important;
+}
+
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formulario div {
+  width: 100%;
+  margin-right: 20px;
+}
+
+.select {
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: 3rem;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.name,
+.surname,
+.Email,
+.Password,
+.Origin,
+.Sexo,
+.Municipio,
+.Data {
+  position: relative;
+}
+
+.name:after {
+  content: "Error: você precisa digitar o seu nome";
+  position: absolute;
+  bottom: -15px;
+}
+
+.surname:after {
+  content: "Error: você precisa digitar o seu sobrenome";
+  position: absolute;
+  bottom: -15px;
+}
+
+.Email1:after {
+  content: "Error: você precisa digitar o seu email";
+  position: absolute;
+  bottom: -15px;
+}
+
+.Password:after {
+  content: "Error: você precisa confirmar a sua senha";
+  position: absolute;
+  bottom: -15px;
+}
+
+.Origin:after {
+  content: "Error: você precisa digitar a sua senha";
+  position: absolute;
+  bottom: -15px;
+}
+
+.Sexo:after {
+  content: "Error: você precisa escolher uma opção";
+  position: absolute;
+  bottom: -15px;
+}
+
+.Municipio:after {
+  content: "Error: você precisa digitar o seu município";
+  position: absolute;
+  bottom: -15px;
+}
+
+.Data:after {
+  content: "Error: você precisa colocar uma data";
+  position: absolute;
+  bottom: -15px;
+}
+
+@media only screen and (min-width: 600px) {
+  .formulario {
+    flex-wrap: nowrap;
+  }
+}

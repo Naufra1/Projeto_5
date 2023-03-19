@@ -1,6 +1,7 @@
 import {
   infoUser,
   registerUser,
+  sendInfo,
   validateUser,
 } from "../controller/userController.js";
 import bcrypt from "bcrypt";
@@ -24,8 +25,8 @@ export function userRoute(app) {
       return res.status(400).send({ error: "A senha é obrigatório" });
     }
 
-    if (!user.idade) {
-      return res.status(400).send({ error: "A idade é obrigatório" });
+    if (!user.data) {
+      return res.status(400).send({ error: "A data é obrigatório" });
     }
 
     if (!user.sexo) {
@@ -105,11 +106,24 @@ export function userRoute(app) {
   });
   //Pegando as informações do usuario
   app.get("/user/:id", validate, async (req, res) => {
-    const id = req.params.id;
+    let id = req.params.id;
     let user = await infoUser(id);
     if (!user) {
       return res.status(404).send({ error: "Usuário não encontrado" });
     }
     return res.status(200).send(user);
+  });
+  //Inserindo novos valores do usuario
+  app.patch("/user/send/:id", validate, async (req, res) => {
+    let id = req.params.id;
+    let userInfo = req.body;
+    try {
+      await sendInfo(userInfo, id);
+      return res.status(200).send({ msg: "Dado enviados com sucesso" });
+    } catch (err) {
+      return res
+        .status(404)
+        .send({ erro: "Usuário não encontrado", err: { err } });
+    }
   });
 }
