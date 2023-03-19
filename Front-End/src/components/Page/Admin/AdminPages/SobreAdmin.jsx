@@ -9,7 +9,7 @@ import Button from "../../../Forms/Button";
 function SobreAdmin() {
   const [about, setAbout] = useState("");
   const [value, setValue] = useState("");
-  const url = "http://vacineirj-api.onrender.com/adm/about";
+  const url = "https://vacineirj-api.onrender.com/adm/about";
   const auth = JSON.parse(sessionStorage.getItem("admin-token"));
 
   function handleSubmit(e) {

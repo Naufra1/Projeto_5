@@ -21,7 +21,7 @@ export default function LoginProvider({ children }) {
     }
     try {
       const resp = await axios.post(
-        "http://vacineirj-api.onrender.com/adm/login",
+        "https://vacineirj-api.onrender.com/adm/login",
         user
       );
       setUser({
@@ -34,7 +34,7 @@ export default function LoginProvider({ children }) {
       sessionStorage.setItem("admin-token", JSON.stringify(resp.data.token));
     } catch {
       const resp = await axios.post(
-        "http://vacineirj-api.onrender.com/user/login",
+        "https://vacineirj-api.onrender.com/user/login",
         user
       );
       setUser({
@@ -50,7 +50,7 @@ export default function LoginProvider({ children }) {
 
   // async function handleLogin(e) {
   //   e.preventDefault();
-  //   const resp = await axios.post("http://vacineirj-api.onrender.com/adm/login", user);
+  //   const resp = await axios.post("https://vacineirj-api.onrender.com/adm/login", user);
   //   setUser({
   //     email: resp.data.email,
   //     password: resp.data.password,

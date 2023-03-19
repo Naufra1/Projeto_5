@@ -20,7 +20,7 @@ function Funcionalidade() {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .patch(`http://vacineirj-api.onrender.com/user/send/${id}`, newInfo, {
+      .patch(`https://vacineirj-api.onrender.com/user/send/${id}`, newInfo, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((resp) => console.log(resp.data))
@@ -29,7 +29,7 @@ function Funcionalidade() {
 
   useEffect(() => {
     axios
-      .get(`http://vacineirj-api.onrender.com/user/${id}`, {
+      .get(`https://vacineirj-api.onrender.com/user/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

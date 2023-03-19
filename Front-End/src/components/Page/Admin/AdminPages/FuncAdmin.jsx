@@ -32,7 +32,7 @@ function FuncAdmin() {
 
   useEffect(() => {
     axios
-      .get("http://vacineirj-api.onrender.com/adm/list", {
+      .get("https://vacineirj-api.onrender.com/adm/list", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -74,7 +74,7 @@ function FuncAdmin() {
                     onClick={async (e) => {
                       e.preventDefault();
                       const resp = await axios.delete(
-                        `http://vacineirj-api.onrender.com/adm/delete/${user.id}`,
+                        `https://vacineirj-api.onrender.com/adm/delete/${user.id}`,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,
@@ -97,7 +97,7 @@ function FuncAdmin() {
                   onSubmit={async (e) => {
                     e.preventDefault();
                     const resp = await axios.patch(
-                      `http://vacineirj-api.onrender.com/adm/update/${user.id}`,
+                      `https://vacineirj-api.onrender.com/adm/update/${user.id}`,
                       newInfo,
                       {
                         headers: {

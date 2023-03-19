@@ -61,7 +61,7 @@ function Cadastro() {
     }
     try {
       axios
-        .post("http://vacineirj-api.onrender.com/user/register", cadastro)
+        .post("https://vacineirj-api.onrender.com/user/register", cadastro)
         .then((resp) => console.log(resp.data));
     } catch (err) {
       console.log(`teste ${err}`);
