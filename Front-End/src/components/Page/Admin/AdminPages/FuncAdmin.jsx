@@ -38,11 +38,12 @@ function FuncAdmin() {
 
   function handleChange(e) {
     setNewInfo((prev) => ({ ...prev, [e.target.name]: e.target.placeholder }));
+    console.log(newInfo);
   }
 
   useEffect(() => {
     axios
-      .get("https://localhost:3000/adm/list", {
+      .get("http://localhost:3000/adm/list", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -61,7 +62,13 @@ function FuncAdmin() {
         users.map((user) => (
           <Accordion className="box-user" bsPrefix="false" key={user.id} flush>
             <Accordion.Item bsPrefix="a" className="user-item" eventKey="0">
-              <Accordion.Header bsPrefix="a">
+              <Accordion.Header
+                onClick={(e) => {
+                  setNewInfo(user);
+                  console.log(newInfo);
+                }}
+                bsPrefix="a"
+              >
                 <div className="header">
                   <div>
                     <h5>
@@ -73,7 +80,7 @@ function FuncAdmin() {
                     onClick={async (e) => {
                       e.preventDefault();
                       const resp = await axios.delete(
-                        `https://localhost:3000/adm/delete/${user.id}`,
+                        `http://localhost:3000/adm/delete/${user.id}`,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,
@@ -90,10 +97,13 @@ function FuncAdmin() {
               <Accordion.Body>
                 <form
                   className={`user ${edit}`}
+                  onReset={() => {
+                    setEdit('fechado')
+                  }}
                   onSubmit={async (e) => {
                     e.preventDefault();
                     const resp = await axios.patch(
-                      `https://localhost:3000/adm/update/${user.id}`,
+                      `http://localhost:3000/adm/update/${user.id}`,
                       newInfo,
                       {
                         headers: {
@@ -175,7 +185,7 @@ function FuncAdmin() {
                     />
                     <Input
                       handleOnChange={handleChange}
-                      name="profissinal"
+                      name="profissional"
                       type="text"
                       customClass="user-inp profissional"
                       placeholder={user.profissional}
@@ -193,9 +203,6 @@ function FuncAdmin() {
                         <Button
                           type="reset"
                           classButton="edit-btn"
-                          onClick={() => {
-                            setEdit("fechado");
-                          }}
                           text={<BsX className="svg reset" />}
                         />
                       </div>

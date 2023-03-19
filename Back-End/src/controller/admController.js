@@ -40,12 +40,23 @@ export async function deleteUser(id) {
   });
 }
 
-// export async function patchUser(field, id) {
-//   const field_property = Object.keys(field)[0];
-//   let value = field[field_property];
-//   return openDb().then((db) => {
-//     return db.run(`UPDATE users SET ${user_property}=? WHERE user_id=${id}`, [
-//       value,
-//     ]);
-//   });
-// }
+export async function patchUser(user, id) {
+  return openDb().then((db) => {
+    return db.get(
+      `UPDATE Users SET name=?, surname=?, email=?, risco=?, sintomas=?, municipio=?, profissional=?, idade=?, password=?, sexo=?, origin_password=?  WHERE id=${id}`,
+      [
+        user.name,
+        user.surname,
+        user.email,
+        user.risco,
+        user.sintomas,
+        user.municipio,
+        user.profissional,
+        user.idade,
+        user.password,
+        user.sexo,
+        user.origin_password,
+      ]
+    );
+  });
+}
