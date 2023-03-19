@@ -34,7 +34,7 @@ function Menu() {
               <div className="navbar-login">
                 <LinkContainer to="/login">
                   <Nav.Link className="link" onClick={handleLogout}>
-                    Deslogar
+                    Sair
                   </Nav.Link>
                 </LinkContainer>
               </div>

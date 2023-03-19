@@ -5,15 +5,24 @@ import "./SobreAdmin.css";
 import AboutTxt from "../../../Parts/AboutTxt";
 import Title from "../../../Layout/Title";
 import Button from "../../../Forms/Button";
+import Message from "../../../Layout/Message";
 
 function SobreAdmin() {
   const [about, setAbout] = useState("");
   const [value, setValue] = useState("");
-  const url = "https://vacineirj-api.onrender.com/adm/about";
+  const [mensagem, setMensagem] = useState("");
+  const [type, setType] = useState();
+  const url = "http://localhost:3000/adm/about";
   const auth = JSON.parse(sessionStorage.getItem("admin-token"));
 
   function handleSubmit(e) {
     e.preventDefault();
+    setMensagem("");
+
+    if (mensagem == "") {
+      setMensagem("Texto trocado com sucesso!");
+      setType("success");
+    }
     return setAbout(value);
   }
 
@@ -37,6 +46,7 @@ function SobreAdmin() {
   return (
     <section>
       <Title titulo="Sobre Nós" />
+      {mensagem && <Message type={type} msg={mensagem} />}
       <AboutTxt />
       <form className="sobre-form" onSubmit={handleSubmit}>
         <textarea

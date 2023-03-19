@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 import "./Estilos/Cadastro.css";
 import Button from "../Forms/Button";
@@ -27,6 +28,7 @@ function Cadastro() {
     Origin: "",
     Password: "",
   });
+  let [redirect,setRedirect] = useState(false)
 
   function cadastroChange(e) {
     setCadastro((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -61,8 +63,11 @@ function Cadastro() {
     }
     try {
       axios
-        .post("https://vacineirj-api.onrender.com/user/register", cadastro)
-        .then((resp) => console.log(resp.data));
+        .post("http://localhost:3000/user/register", cadastro)
+        .then((resp) => {
+          setRedirect(true)
+          console.log(resp.data);
+        });
     } catch (err) {
       console.log(`teste ${err}`);
     }
@@ -70,6 +75,7 @@ function Cadastro() {
 
   return (
     <section className="form cadastro">
+      {redirect && <Navigate to="/login" replace={true} />}
       <Title titulo="Cadastro" />
       <form className="teste" onSubmit={handleSubmit}>
         <div className="formulario nome-cpf">
