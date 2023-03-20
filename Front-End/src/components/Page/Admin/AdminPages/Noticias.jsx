@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { BsCheckLg, BsX } from "react-icons/bs";
 
+import "./Noticias.css";
 import Button from "../../../Forms/Button";
 import Input from "../../../Forms/Input";
 import Title from "../../../Layout/Title";
@@ -58,15 +59,17 @@ function Noticias() {
           />
           <Input
             handleOnChange={handleChange}
-            name="desc"
-            type="text"
-            customClass="user-inp desc"
-          />
-          <Input
-            handleOnChange={handleChange}
             name="data"
             type="date"
             customClass="user-inp data"
+          />
+        </div>
+        <div className="textarea">
+          <textarea
+            onChange={handleChange}
+            name="desc"
+            className="user-inp desc"
+            rows={10}
           />
         </div>
         <div className="user-check">

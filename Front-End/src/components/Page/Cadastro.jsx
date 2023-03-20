@@ -6,6 +6,7 @@ import "./Estilos/Cadastro.css";
 import Button from "../Forms/Button";
 import Input from "../Forms/Input";
 import Title from "../Layout/Title";
+import Message from "../Layout/Message";
 
 function Cadastro() {
   let [cadastro, setCadastro] = useState({
@@ -29,6 +30,8 @@ function Cadastro() {
     Password: "",
   });
   let [redirect, setRedirect] = useState(false);
+  const [mensagem, setMensagem] = useState("");
+  const [type, setType] = useState();
 
   function cadastroChange(e) {
     setCadastro((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -67,6 +70,12 @@ function Cadastro() {
         .then((resp) => {
           setRedirect(true);
           console.log(resp.data);
+          setMensagem("");
+
+          if (mensagem == "") {
+            setMensagem("Cadastrado com sucesso.");
+            setType("success");
+          }
         });
     } catch (err) {
       console.log(`teste ${err}`);
@@ -76,6 +85,7 @@ function Cadastro() {
   return (
     <section className="form cadastro">
       {redirect && <Navigate to="/login" replace={true} />}
+      {mensagem && <Message type={type} msg={mensagem} />}
       <Title titulo="Cadastro" />
       <form className="teste" onSubmit={handleSubmit}>
         <div className="formulario nome-cpf">
