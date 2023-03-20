@@ -10,6 +10,8 @@ export default function LoginProvider({ children }) {
     client: false,
     admin: false,
   });
+  const [mensagem, setMensagem] = useState("");
+  const [type, setType] = useState();
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -30,6 +32,12 @@ export default function LoginProvider({ children }) {
         password: resp.data.password,
         admin: true,
       });
+      setMensagem("");
+
+      if (mensagem == "") {
+        setMensagem("Mensagem enviada com sucesso.");
+        setType("success");
+      }
       sessionStorage.setItem("admin", JSON.stringify(resp.data.adm));
       sessionStorage.setItem("admin-token", JSON.stringify(resp.data.token));
     } catch {
@@ -43,23 +51,16 @@ export default function LoginProvider({ children }) {
         password: resp.data.password,
         client: true,
       });
+      setMensagem("");
+
+      if (mensagem == "") {
+        setMensagem("Mensagem enviada com sucesso.");
+        setType("success");
+      }
       sessionStorage.setItem("user", JSON.stringify(resp.data.user));
       sessionStorage.setItem("user-token", JSON.stringify(resp.data.token));
     }
   }
-
-  // async function handleLogin(e) {
-  //   e.preventDefault();
-  //   const resp = await axios.post("https://vacineirj-api.onrender.com/adm/login", user);
-  //   setUser({
-  //     email: resp.data.email,
-  //     password: resp.data.password,
-  //     client: true,
-  //   });
-  //   sessionStorage.setItem("user", JSON.stringify(resp.data));
-  //   sessionStorage.setItem("token", JSON.stringify(resp.data.token));
-  //   console.log(resp.data.email);
-  // }
 
   function handleLogout() {
     setUser({
@@ -73,7 +74,7 @@ export default function LoginProvider({ children }) {
   }
 
   return (
-    <LoginContext.Provider value={{ setUser, user, handleLogin, handleLogout }}>
+    <LoginContext.Provider value={{ setUser, user, handleLogin, handleLogout, mensagem, type }}>
       {children}
     </LoginContext.Provider>
   );

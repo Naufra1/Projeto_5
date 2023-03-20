@@ -1,13 +1,15 @@
 import Button from "../Forms/Button";
 import Input from "../Forms/Input";
 import Title from "../Layout/Title";
+import Message from "../Layout/Message";
 
 import { useContext } from "react";
 import { LoginContext } from "../../context/LoginContext";
 import { Navigate } from "react-router-dom";
 
 function Login() {
-  const { setUser, user, handleLogin } = useContext(LoginContext);
+  const { setUser, user, handleLogin, mensagem, type } =
+    useContext(LoginContext);
 
   function handleChange(e) {
     setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -18,6 +20,7 @@ function Login() {
       <Title titulo="Login" />
       {user.admin && <Navigate to="/admin/about" replace={true} />}
       {user.client && <Navigate to="/Funcionalidades" replace={true} />}
+      {mensagem && <Message type={type} msg={mensagem} />}
       <form onSubmit={handleLogin}>
         <div>
           <Input
