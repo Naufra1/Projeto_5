@@ -28,7 +28,7 @@ function Cadastro() {
     Origin: "",
     Password: "",
   });
-  let [redirect,setRedirect] = useState(false)
+  let [redirect, setRedirect] = useState(false);
 
   function cadastroChange(e) {
     setCadastro((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -63,9 +63,9 @@ function Cadastro() {
     }
     try {
       axios
-        .post("http://localhost:3000/user/register", cadastro)
+        .post("https://vacineirj-api.onrender.com/user/register", cadastro)
         .then((resp) => {
-          setRedirect(true)
+          setRedirect(true);
           console.log(resp.data);
         });
     } catch (err) {

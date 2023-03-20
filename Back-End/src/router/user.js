@@ -1,4 +1,7 @@
 import {
+  getProfissional,
+  getRisco,
+  getSintomas,
   infoUser,
   registerUser,
   sendInfo,
@@ -120,6 +123,39 @@ export function userRoute(app) {
     try {
       await sendInfo(userInfo, id);
       return res.status(200).send({ msg: "Dado enviados com sucesso" });
+    } catch (err) {
+      return res
+        .status(404)
+        .send({ erro: "Usuário não encontrado", err: { err } });
+    }
+  });
+
+  app.get("/user/show/sintomas", async (req, res) => {
+    try {
+      let show = await getSintomas();
+      return res.status(200).send({ msg: "Dado enviados com sucesso", show });
+    } catch (err) {
+      return res
+        .status(404)
+        .send({ erro: "Usuário não encontrado", err: { err } });
+    }
+  });
+
+  app.get("/user/show/risco", async (req, res) => {
+    try {
+      let show = await getRisco();
+      return res.status(200).send({ msg: "Dado enviados com sucesso", show });
+    } catch (err) {
+      return res
+        .status(404)
+        .send({ erro: "Usuário não encontrado", err: { err } });
+    }
+  });
+
+  app.get("/user/show/prof", async (req, res) => {
+    try {
+      let show = await getProfissional();
+      return res.status(200).send({ msg: "Dado enviados com sucesso", show });
     } catch (err) {
       return res
         .status(404)
