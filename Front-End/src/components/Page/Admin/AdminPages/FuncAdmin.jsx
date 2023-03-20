@@ -14,6 +14,7 @@ import Title from "../../../Layout/Title";
 import Input from "../../../Forms/Input";
 import Button from "../../../Forms/Button";
 import Message from "../../../Layout/Message";
+import Loading from "../../../Layout/Loading";
 
 function FuncAdmin() {
   const [users, setUsers] = useState();
@@ -22,6 +23,8 @@ function FuncAdmin() {
   const [toggle, setToggle] = useState(false);
   const [mensagem, setMensagem] = useState("");
   const [type, setType] = useState();
+  const [removeLoading, setRemoveloading] = useState(false);
+
   const token = JSON.parse(sessionStorage.getItem("admin-token"));
 
   function handleToggle() {
@@ -35,7 +38,7 @@ function FuncAdmin() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/adm/list", {
+      .get("https://vacineirj-api.onrender.com/adm/list", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -43,10 +46,12 @@ function FuncAdmin() {
       .then((resp) => {
         let data = resp.data.lista;
         setUsers(data);
+        console.log(data);
+        setRemoveloading(true);
       });
   }, [toggle]);
 
-  return (
+  return removeLoading ? (
     <section>
       <Title titulo="Lista de Usuários" />
       {mensagem && <Message type={type} msg={mensagem} />}
@@ -78,7 +83,7 @@ function FuncAdmin() {
                     onClick={async (e) => {
                       e.preventDefault();
                       const resp = await axios.delete(
-                        `http://localhost:3000/adm/delete/${user.id}`,
+                        `https://vacineirj-api.onrender.com/adm/delete/${user.id}`,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,
@@ -107,7 +112,7 @@ function FuncAdmin() {
                   onSubmit={async (e) => {
                     e.preventDefault();
                     const resp = await axios.patch(
-                      `http://localhost:3000/adm/update/${user.id}`,
+                      `https://vacineirj-api.onrender.com/adm/update/${user.id}`,
                       newInfo,
                       {
                         headers: {
@@ -242,6 +247,8 @@ function FuncAdmin() {
           </Accordion>
         ))}
     </section>
+  ) : (
+    <Loading />
   );
 }
 

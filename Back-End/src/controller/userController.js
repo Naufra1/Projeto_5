@@ -37,12 +37,29 @@ export async function sendInfo(userInfo, id) {
   return openDb().then((db) => {
     return db.get(
       `UPDATE Users SET risco=?, sintomas=?, profissional=?, covid=?  WHERE id='${id}'`,
-      [
-        userInfo.risco,
-        userInfo.sintomas,
-        userInfo.profissional,
-        userInfo.covid,
-      ]
+      [userInfo.risco, userInfo.sintomas, userInfo.profissional, userInfo.covid]
+    );
+  });
+}
+
+export async function getSintomas() {
+  return openDb().then((db) => {
+    return db.get(`SELECT COUNT(sintomas) AS sintomas FROM Users WHERE sexo = 'Masculino'`);
+  });
+}
+
+export async function getRisco() {
+  return openDb().then((db) => {
+    return db.get(
+      `SELECT COUNT((SELECT covid FROM Users WHERE covid = 'sim')) AS risco FROM Users WHERE risco = 'Criança'`
+    );
+  });
+}
+
+export async function getProfissional() {
+  return openDb().then((db) => {
+    return db.get(
+      `SELECT COUNT(id) AS prof FROM Users WHERE profissional = 'laboratorio'`
     );
   });
 }

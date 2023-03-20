@@ -16,7 +16,7 @@ function Login() {
   return (
     <section className="form">
       <Title titulo="Login" />
-      {user.admin && <Navigate to="/admin" replace={true} />}
+      {user.admin && <Navigate to="/admin/about" replace={true} />}
       {user.client && <Navigate to="/Funcionalidades" replace={true} />}
       <form onSubmit={handleLogin}>
         <div>

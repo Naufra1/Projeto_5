@@ -4,6 +4,7 @@ import cors from "cors";
 
 import { userRoute } from "./router/user.js";
 import { admRoute } from "./router/adm.js";
+import { newsRoute } from "./router/news.js";
 
 dotenv.config();
 
@@ -22,5 +23,6 @@ app.use(function (req, res, next) {
 //Rotas
 userRoute(app);
 admRoute(app);
+newsRoute(app)
 
 export default app;

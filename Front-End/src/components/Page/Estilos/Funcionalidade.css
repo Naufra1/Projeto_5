@@ -15,6 +15,14 @@
   width: 100%;
 }
 
+.novas {
+  margin-top: 1em 
+}
+
+.textinho {
+  margin-bottom: 1em;
+}
+
 .box-risco:before,
 .box-profissional:before,
 .box-covid::before {

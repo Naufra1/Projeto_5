@@ -30,6 +30,9 @@ function Menu() {
                 <LinkContainer to="/admin/users">
                   <Nav.Link>Lista de usuários</Nav.Link>
                 </LinkContainer>
+                <LinkContainer to="/admin/noticias">
+                  <Nav.Link>Notícias</Nav.Link>
+                </LinkContainer>
               </Nav>
               <div className="navbar-login">
                 <LinkContainer to="/login">

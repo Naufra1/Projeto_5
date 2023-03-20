@@ -17,6 +17,7 @@ import AdmHome from "./components/Page/Admin/AdminPages/AdmHome";
 import SobreAdmin from "./components/Page/Admin/AdminPages/SobreAdmin";
 import FuncAdmin from "./components/Page/Admin/AdminPages/FuncAdmin";
 import AdmPages from "./components/Page/Admin/AdmPages";
+import Noticias from "./components/Page/Admin/AdminPages/Noticias";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,9 +30,9 @@ export const router = createBrowserRouter(
       <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/login" element={<Login />} />
       <Route path="/admin" element={<AdmPages />}>
-        <Route index element={<AdmHome />} />
         <Route path="/admin/about" element={<SobreAdmin />} />
         <Route path="/admin/users" element={<FuncAdmin />} />
+        <Route path="/admin/noticias" element={<Noticias />} />
       </Route>
     </Route>
   )

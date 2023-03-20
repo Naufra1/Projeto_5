@@ -12,17 +12,13 @@ function SobreAdmin() {
   const [value, setValue] = useState("");
   const [mensagem, setMensagem] = useState("");
   const [type, setType] = useState();
-  const url = "http://localhost:3000/adm/about";
+
+  const url = "https://vacineirj-api.onrender.com/adm/about";
   const auth = JSON.parse(sessionStorage.getItem("admin-token"));
 
   function handleSubmit(e) {
     e.preventDefault();
-    setMensagem("");
 
-    if (mensagem == "") {
-      setMensagem("Texto trocado com sucesso!");
-      setType("success");
-    }
     return setAbout(value);
   }
 
@@ -39,6 +35,12 @@ function SobreAdmin() {
       )
       .then((resp) => {
         console.log(resp.data);
+        setMensagem("");
+
+        if (mensagem == "") {
+          setMensagem("Texto trocado com sucesso!");
+          setType("success");
+        }
       })
       .catch((err) => console.log(err));
   }, [about]);

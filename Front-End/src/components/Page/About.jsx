@@ -6,7 +6,7 @@ function About() {
   return (
     <section>
       <Title titulo="Sobre nós" />
-      <div>
+      <div className="about">
         <AboutTxt />
       </div>
     </section>

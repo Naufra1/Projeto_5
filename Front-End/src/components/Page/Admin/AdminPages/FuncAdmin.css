@@ -109,7 +109,10 @@
 .risco::before,
 .sexo::before,
 .municipio::before,
-.covid::before {
+.covid::before,
+.desc::before,
+.author::before,
+.titulo::before {
   position: absolute;
   top: 5px;
   left: 10px;
@@ -159,7 +162,18 @@
 
 .covid::before {
   content: "Já teve covid";
-  position: absolute;
+}
+
+.titulo::before {
+  content: "Titulo";
+}
+
+.author::before {
+  content: "Autor";
+}
+
+.desc::before {
+  content: "Descrição";
 }
 
 @media only screen and (min-width: 800px) {
