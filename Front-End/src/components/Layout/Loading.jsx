@@ -1,5 +1,6 @@
 import "./Loading.css";
-import loading from "../../Img/loading.svg";
+// import loading from "../../Img/loading.svg";
+const loading = require('../../img/loading.svg')
 
 function Loading() {
   return (
