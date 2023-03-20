@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 import Loading from "../Layout/Loading";
+import sobreImg from '../../img/Sobre.jpeg'
 
 function AboutTxt() {
   const [aboutText, setAboutText] = useState();
@@ -13,7 +14,12 @@ function AboutTxt() {
     setRemoveloading(true);
   });
 
-  return removeLoading ? <p>{aboutText}</p> : <Loading />;
+  return removeLoading ? (
+    <>
+    <img src={sobreImg} className='sobre-img'></img>
+    <p>{aboutText}</p>
+    </>
+  ) : <Loading />;
 }
 
 export default AboutTxt;

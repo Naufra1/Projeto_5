@@ -1,15 +1,11 @@
 import "./Loading.css";
-// import loading from "../../Img/loading.svg";
+import Spinner from 'react-bootstrap/Spinner';
 
 function Loading() {
   return (
-    <div className="loader">
-      <img
-        className="loader__img"
-        src={"../../img/loading.svg"}
-        alt="Loading"
-      />
-    </div>
+    <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
   );
 }
 
